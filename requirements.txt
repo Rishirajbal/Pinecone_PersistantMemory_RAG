@@ -1,0 +1,6 @@
+streamlit
+langchain
+langchain-cohere
+langchain-groq
+langchain-pinecone
+pinecone-client
