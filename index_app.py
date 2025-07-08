@@ -17,6 +17,7 @@ st.info("""
 **RishiGPT Embedding Station**
 
 Use this tool to embed your files or website content into a **Pinecone vector index** with Cohere embeddings.
+NOTE-Only 4 indexes allowed on a free plan of pinecone.
 
 **Requirements:**
 - [Cohere API Key](https://cohere.com/) for embeddings (`embed-english-light-v3.0`)
