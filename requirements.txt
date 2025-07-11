@@ -1,7 +1,8 @@
 streamlit
 langchain
 langchain-cohere
-langchain-groq
 langchain-pinecone
-pinecone
+langchain-groq
+pinecone-client
+cohere
 pypdf
