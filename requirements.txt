@@ -3,5 +3,5 @@ langchain
 langchain_cohere
 langchain-pinecone
 langchain-groq
-pinecone-client
+pinecone
 pypdf
