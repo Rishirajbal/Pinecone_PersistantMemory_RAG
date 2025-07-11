@@ -3,10 +3,9 @@ import time
 import streamlit as st
 from langchain_cohere import CohereEmbeddings
 from pinecone import Pinecone
-from langchain_pinecone import PineconeVectorStore
+from langchain_community.vectorstores import Pinecone as PineconeVectorStore
 from langchain_groq import ChatGroq
 from langchain_core.output_parsers import StrOutputParser
-
 
 st.set_page_config(page_title="Deposition Station Chat", layout="wide")
 st.title("Deposition Station Chat")
@@ -33,7 +32,6 @@ Chat with your **pre-embedded Pinecone index** using an LLM-powered RAG pipeline
 - Your Pinecone index must already exist and contain embeddings
 """)
 
-
 with st.sidebar:
     st.header("Required API Keys")
     groq_key = st.text_input("Groq API Key", type="password")
@@ -54,7 +52,6 @@ if keys_submit:
     else:
         st.error("Please enter **all three** API keys and click Submit.")
 
-
 if st.session_state.keys_valid:
     pc = Pinecone(api_key=os.environ["PINECONE_API_KEY"])
     embeddings = CohereEmbeddings(model="embed-english-light-v3.0")
@@ -70,12 +67,11 @@ if st.session_state.keys_valid:
         indexes = [i.name for i in pc.list_indexes()]
         if index_name in indexes:
             index = pc.Index(index_name)
-            retriever = PineconeVectorStore(index=index, embedding=embeddings).as_retriever()
+            retriever = PineconeVectorStore(index=index, embedding=embeddings, text_key="text").as_retriever()
             retriever.search_kwargs["k"] = 5
 
             user_input = st.chat_input("Ask your question...")
 
-           
             for q, a in st.session_state.chat_history:
                 with st.chat_message("user"):
                     st.write(q)
