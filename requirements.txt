@@ -4,3 +4,4 @@ langchain-cohere==0.4.4
 cohere==5.14.0
 streamlit==1.26.0
 pinecone-client==3.0.0
+beautifulsoup4
