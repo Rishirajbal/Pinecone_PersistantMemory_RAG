@@ -3,7 +3,7 @@ import time
 import streamlit as st
 from langchain_cohere import CohereEmbeddings
 from pinecone import Pinecone
-from langchain_pinecone import PineconeVectorStore
+from langchain_community.vectorstores import Pinecone as PineconeVectorStore
 from langchain_groq import ChatGroq
 from langchain_core.output_parsers import StrOutputParser
 
