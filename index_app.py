@@ -6,7 +6,8 @@ from langchain_community.document_loaders import TextLoader, PyPDFLoader, WebBas
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_cohere import CohereEmbeddings
 from pinecone import Pinecone, ServerlessSpec
-from langchain_pinecone import PineconeVectorStore
+from langchain_community.vectorstores import Pinecone as PineconeVectorStore
+
 
 
 st.set_page_config(page_title="RishiGPT Embedding Station", layout="wide")
