@@ -6,9 +6,7 @@ from langchain_community.document_loaders import TextLoader, PyPDFLoader, WebBas
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_cohere import CohereEmbeddings
 from pinecone import Pinecone, ServerlessSpec
-from langchain_pinecone import PineconeVectorStore
-
-
+from langchain_community.vectorstores import Pinecone as PineconeVectorStore
 
 st.set_page_config(page_title="RishiGPT Embedding Station", layout="wide")
 st.title("RishiGPT Persistent File Deposition Station")
@@ -18,7 +16,7 @@ st.info("""
 **RishiGPT Embedding Station**
 
 Use this tool to embed your files or website content into a **Pinecone vector index** with Cohere embeddings.
-NOTE-Only 4 indexes allowed on a free plan of pinecone.
+NOTE: Only 4 indexes allowed on a free plan of Pinecone.
 
 **Requirements:**
 - [Cohere API Key](https://cohere.com/) for embeddings (`embed-english-light-v3.0`)
@@ -27,13 +25,11 @@ NOTE-Only 4 indexes allowed on a free plan of pinecone.
 **All API keys must be provided below.**
 """)
 
-
 with st.sidebar:
     st.header("Required API Keys")
     cohere_key = st.text_input("Cohere API Key", type="password")
     pinecone_key = st.text_input("Pinecone API Key", type="password")
     keys_submit = st.button("Submit API Keys")
-
 
 if "keys_valid" not in st.session_state:
     st.session_state.keys_valid = False
@@ -46,7 +42,6 @@ if keys_submit:
         st.success("API keys saved. Continue below to embed your files or websites.")
     else:
         st.error("Please enter **both** Cohere and Pinecone API keys before submitting.")
-
 
 if st.session_state.keys_valid:
     pc = Pinecone(api_key=os.environ["PINECONE_API_KEY"])
@@ -84,7 +79,7 @@ if st.session_state.keys_valid:
                 st.success(f"Index '{index_name}' created.")
 
                 index = pc.Index(index_name)
-                db = PineconeVectorStore(index=index, embedding=embeddings)
+                db = PineconeVectorStore(index=index, embedding=embeddings, text_key="text")
 
                 if uploaded_file:
                     suffix = ".txt" if source_type == "Text" else ".pdf"
