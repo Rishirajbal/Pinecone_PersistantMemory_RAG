@@ -6,7 +6,7 @@ from langchain_community.document_loaders import TextLoader, PyPDFLoader, WebBas
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_cohere import CohereEmbeddings
 from pinecone import Pinecone, ServerlessSpec
-from langchain_community.vectorstores import Pinecone as PineconeVectorStore
+from langchain_pinecone import PineconeVectorStore
 
 
 
