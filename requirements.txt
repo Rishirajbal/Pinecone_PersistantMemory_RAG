@@ -1,7 +1,6 @@
+langchain==0.3.26
+langchain-cohere==0.4.4
+cohere==5.14.0
 streamlit
-langchain
-langchain_cohere
+pinecone==3.0.0
 langchain-pinecone
-langchain-groq
-pinecone
-pypdf
